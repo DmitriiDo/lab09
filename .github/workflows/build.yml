@@ -35,6 +35,7 @@ jobs:
         # docker build -t logger .
         echo skip
 
+
     - name: version
       run: echo "::set-output name=version::v0.1.0.0"
       # run: echo "v0.1.0.0"
