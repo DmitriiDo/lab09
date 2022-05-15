@@ -40,25 +40,10 @@ jobs:
       run: echo "::set-output name=version::v0.1.0.0"
       # run: echo "v0.1.0.0"
       id: version
-    - name: Create Release
-      uses: ncipollo/release-action@v1.10.0
-      id: create_release
+    
+    - name: upload
+    - uses: ncipollo/release-action@v1
       with:
-        draft: false
-        prerelease: false
-        name: ${{ steps.version.outputs.version }}
-        tag: ${{ steps.version.outputs.version }}
-        body_path: ChangeLog.md
-        allowUpdates: true
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
-
-    - name: artifact
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./_build/banking-0.1.0.0-Linux.tar.gz
-        asset_name: _build/*.tar.gz
-        asset_content_type: application/gzip
+        artifacts: "./_build/*.tar.gz"
+        bodyFile: "body.md"
+        token: ${{ secrets.GITHUB_TOKEN }}
