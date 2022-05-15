@@ -41,18 +41,19 @@ jobs:
       run: echo "::set-output name=version::v0.1.0.0"
       # run: echo "v0.1.0.0"
       id: version
-    - name: Create Release
-      uses: ncipollo/release-action@v1.10.0
-      id: create_release
-      with:
-        draft: false
-        prerelease: false
-        name: ${{ steps.version.outputs.version }}
-        tag: ${{ github.ref }}
-        body_path: ChangeLog.md
-        allowUpdates: true
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
+    # - name: Create Release
+    #   uses: ncipollo/release-action@v1.10.0
+    #   id: create_release
+    #   with:
+    #     draft: false
+    #     prerelease: false
+    #     name: ${{ steps.version.outputs.version }}
+    #     tag: ${{ github.ref }}
+    #     body_path: ChangeLog.md
+    #     allowUpdates: true
+    #   env:
+    #     GITHUB_TOKEN: ${{ github.token }}
+    - name: upl
     - uses: ncipollo/release-action@v1
       with:
         artifacts: "./_build/*.tar.gz"
