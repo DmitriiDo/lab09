@@ -32,6 +32,9 @@ jobs:
         sudo docker run hello-world
         sudo apt-get install docker
 
+    - name: checkout
+        uses: actions/checkout@v1
+
     - name: container project
       shell: bash
       run: |
