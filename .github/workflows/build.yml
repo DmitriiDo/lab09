@@ -21,13 +21,6 @@ jobs:
     - name: install docker
       shell: bash
       run: |
-        pwd
-        echo "123"
-        ls -a
-        echo "456"
-        cd ..
-        ls -a
-        echo "789"
         sudo apt-get install ca-certificates curl gnupg lsb-release
         curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
         echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
@@ -40,6 +33,33 @@ jobs:
       shell: bash
       run: |
         docker build -t logger .
+
+    - name: version
+#         run: echo "::set-output name=version::$(./bin/azblogfilter --version)"
+        run: echo "v0.1.0.0"
+        id: version
+      - name: Create Release
+        uses: ncipollo/release-action@v1.10.0
+        id: create_release
+        with:
+          draft: false
+          prerelease: false
+          name: ${{ steps.version.outputs.version }}
+          tag: ${{ steps.version.outputs.version }}
+          body_path: ChangeLog.md
+          allowUpdates: true
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: artifact
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./_build/banking-0.1.0.0-Linux.tar.gz
+          asset_name: _build/*.tar.gz
+          asset_content_type: application/gzip
 
 # language: cpp
 # services:
