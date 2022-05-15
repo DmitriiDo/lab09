@@ -42,9 +42,4 @@ jobs:
       # run: echo "v0.1.0.0"
       id: version
     
-    - name: upload
-    - uses: ncipollo/release-action@v1
-      with:
-        artifacts: "./_build/*.tar.gz"
-        bodyFile: "body.md"
-        token: ${{ secrets.GITHUB_TOKEN }}
+   
