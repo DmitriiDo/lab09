@@ -37,8 +37,8 @@ jobs:
         echo skip
 
     - name: version
-#         run: echo "::set-output name=version::$(./bin/azblogfilter --version)"
-      run: echo "v0.1.0.0"
+      run: echo "::set-output name=version::v0.1.0.0"
+      # run: echo "v0.1.0.0"
       id: version
     - name: Create Release
       uses: ncipollo/release-action@v1.10.0
