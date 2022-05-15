@@ -47,7 +47,7 @@ jobs:
         draft: false
         prerelease: false
         name: ${{ steps.version.outputs.version }}
-        tag: v1.0.0.0
+        tag: ${{ github.ref }}
         body_path: ChangeLog.md
         allowUpdates: true
       env:
