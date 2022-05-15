@@ -30,6 +30,10 @@ jobs:
         sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
         sudo docker run hello-world
         sudo apt-get install docker
+
+    - name: container project
+      shell: bash
+      run: |
         docker build -t logger .
 
 # language: cpp
