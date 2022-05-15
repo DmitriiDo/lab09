@@ -50,6 +50,7 @@ jobs:
       with:
         artifacts: "_build/*.tar.gz"
         bodyFile: "ChangeLog.md"
+        allowUpdates: true
         tag: v1.0.0.0
         token: ${{ secrets.GITHUB_TOKEN }}
    
