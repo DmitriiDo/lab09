@@ -2,8 +2,9 @@ name: CI
 
 on: 
   push:
-    tags:
-    - '*'
+    branch: [ master ]
+      tags:
+      - '*'
 
 jobs:
   # This workflow contains a single job called "build"
