@@ -31,21 +31,24 @@ jobs:
         # sudo apt-get install docker
         echo "skip"
 
-    - name: container project
+    - name: pack project
       shell: bash
       run: |
-        # docker build -t logger .
-        echo skip
+        cmake -H. -B_build -DCPACK_GENERATOR="TGZ"
+        cmake --build _build --target package
 
     - name: version
       run: echo "::set-output name=version::v0.1.0.0"
       # run: echo "v0.1.0.0"
       id: version
     
-    - uses: actions/checkout@v2
+    
+
+
+    # - uses: actions/checkout@v2
     - uses: ncipollo/release-action@v1
       with:
-        artifacts: "release.tar.gz,foo/*.txt"
+        artifacts: "_build/*.tar.gz"
         bodyFile: "ChangeLog.md"
         tag: v1.0.0.0
         token: ${{ secrets.GITHUB_TOKEN }}
