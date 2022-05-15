@@ -33,7 +33,8 @@ jobs:
     - name: container project
       shell: bash
       run: |
-        docker build -t logger .
+        # docker build -t logger .
+        echo skip
 
     - name: version
 #         run: echo "::set-output name=version::$(./bin/azblogfilter --version)"
