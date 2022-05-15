@@ -39,10 +39,8 @@ jobs:
 
     - name: version
       run: echo "::set-output name=version::v0.1.0.0"
-      # run: echo "v0.1.0.0"
-
-
       id: version
+      # run: echo "v0.1.0.0"
     # - name: Create Release
     #   uses: ncipollo/release-action@v1.10.0
     #   id: create_release
@@ -55,7 +53,7 @@ jobs:
     #     allowUpdates: true
     #   env:
     #     GITHUB_TOKEN: ${{ github.token }}
-    - name: upl
+    - name: upload
     - uses: ncipollo/release-action@v1
       with:
         artifacts: "./_build/*.tar.gz"
