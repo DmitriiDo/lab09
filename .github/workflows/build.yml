@@ -20,7 +20,7 @@ jobs:
       shell: bash
       run: |
         pwd
-        ls - a
+        ls -a
         echo "lol"
         echo "lol"
         echo "lol"
