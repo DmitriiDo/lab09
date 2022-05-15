@@ -45,7 +45,7 @@ jobs:
         draft: false
         prerelease: false
         name: ${{ steps.version.outputs.version }}
-        tag: "v1.0.0.0"
+        tag: v1.0.0.0
         body_path: ChangeLog.md
         allowUpdates: true
       env:
