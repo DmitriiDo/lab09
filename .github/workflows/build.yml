@@ -46,7 +46,7 @@ jobs:
     - uses: ncipollo/release-action@v1
       with:
         artifacts: "release.tar.gz,foo/*.txt"
-        bodyFile: "body.md"
+        bodyFile: "ChangeLog.md"
         tag: v1.0.0.0
         token: ${{ secrets.GITHUB_TOKEN }}
    
