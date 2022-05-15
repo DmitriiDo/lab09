@@ -60,9 +60,3 @@ jobs:
           asset_path: ./_build/banking-0.1.0.0-Linux.tar.gz
           asset_name: _build/*.tar.gz
           asset_content_type: application/gzip
-
-# language: cpp
-# services:
-#   - docker  
-# script:
-#   - docker build -t logger .
