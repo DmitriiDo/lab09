@@ -1,6 +1,6 @@
 name: CI
 
-on: 
+on:
   push:
     branches: [ master ]
   pull_request:
@@ -36,36 +36,29 @@ jobs:
         # docker build -t logger .
         echo skip
 
-
     - name: version
       run: echo "::set-output name=version::v0.1.0.0"
-      id: version
       # run: echo "v0.1.0.0"
-    # - name: Create Release
-    #   uses: ncipollo/release-action@v1.10.0
-    #   id: create_release
-    #   with:
-    #     draft: false
-    #     prerelease: false
-    #     name: ${{ steps.version.outputs.version }}
-    #     tag: ${{ github.ref }}
-    #     body_path: ChangeLog.md
-    #     allowUpdates: true
-    #   env:
-    #     GITHUB_TOKEN: ${{ github.token }}
-    - name: upload
-    - uses: ncipollo/release-action@v1
+      id: version
+    - name: Create Release
+      uses: ncipollo/release-action@v1.10.0
+      id: create_release
       with:
-        artifacts: "./_build/*.tar.gz"
-        bodyFile: "body.md"
-        token: ${{ secrets.GITHUB_TOKEN }}
+        draft: false
+        prerelease: false
+        name: ${{ steps.version.outputs.version }}
+        tag: ${{ steps.version.outputs.version }}
+        body_path: ChangeLog.md
+        allowUpdates: true
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
 
-    # - name: artifact
-    #   uses: actions/upload-release-asset@v1
-    #   env:
-    #     GITHUB_TOKEN: ${{ github.token }}
-    #   with:
-    #     upload_url: ${{ steps.create_release.outputs.upload_url }}
-    #     asset_path: ./_build/banking-0.1.0.0-Linux.tar.gz
-    #     asset_name: _build/*.tar.gz
-    #     asset_content_type: application/gzip
+    - name: artifact
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./_build/banking-0.1.0.0-Linux.tar.gz
+        asset_name: _build/*.tar.gz
+        asset_content_type: application/gzip
