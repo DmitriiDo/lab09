@@ -1,10 +1,11 @@
 name: CI
 
-on:  
+on:
   push:
-    tags:
-      - '*'
-      
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
 jobs:
   # This workflow contains a single job called "build"
   build:
@@ -46,5 +47,6 @@ jobs:
       with:
         artifacts: "release.tar.gz,foo/*.txt"
         bodyFile: "body.md"
+        tag: v1.0.0.0
         token: ${{ secrets.GITHUB_TOKEN }}
    
