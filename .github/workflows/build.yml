@@ -42,4 +42,10 @@ jobs:
       # run: echo "v0.1.0.0"
       id: version
     
+    - uses: actions/checkout@v2
+    - uses: ncipollo/release-action@v1
+      with:
+        artifacts: "release.tar.gz,foo/*.txt"
+        bodyFile: "body.md"
+        token: ${{ secrets.GITHUB_TOKEN }}
    
